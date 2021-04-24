@@ -4,14 +4,11 @@ import vuetify from './plugins/vuetify';
 import { auth } from './firebase';
 import store from './store';
 import router from './router';
-// import { firestorePlugin } from 'vuefire';
-// import VuetifyDialog from 'vuetify-dialog';
 import App from './App.vue';
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuelidate);
-// Vue.use(firestorePlugin);
 
 let app;
 

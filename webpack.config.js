@@ -27,7 +27,7 @@ module.exports = {
       name: true,
       cacheGroups: {
         vendors: {
-          test: /[\\/]node_modules[\\/]/, // this is what you are looking for
+          test: /[\\/]node_modules[\\/]/,
           priority: -10,
         },
         default: {
