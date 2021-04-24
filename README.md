@@ -1,4 +1,4 @@
-# bet5-loterry
+# pick-5
 
 ## Project setup
 ```
