@@ -75,15 +75,8 @@ export default {
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       dialog: false,
-      // his: this.history,
     };
   },
-  // props: {
-  //   historicalData: {
-  //     type: Array,
-  //     default: () => [],
-  //   },
-  // },
   mounted() {
     this.fetchHistoricalData();
   },

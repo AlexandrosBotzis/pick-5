@@ -100,7 +100,6 @@ export default new Vuex.Store({
       }
     },
     REMOVE_ENTRY(state, id) {
-      state.history = [];
       state.history = state.history.filter((item) => item.id === id);
     },
     CLEAR_HISTORY(state) {
