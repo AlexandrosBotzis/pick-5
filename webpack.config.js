@@ -1,7 +1,7 @@
 const { VueLoaderPlugin } = require("vue-loader");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
-// const htmlWebpackPlugin = require("html-webpack-plugin");
+const htmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 
@@ -13,7 +13,7 @@ module.exports = {
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, "dist"),
-    publicPath: '/',
+    publicPath: '/pick-5/',
   },
   optimization: {
     splitChunks: {
@@ -82,10 +82,9 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin(),
-    // new htmlWebpackPlugin({
-    //     template: path.resolve(__dirname, "public", "index.html"),
-    //     favicon: "./public/favicon.ico",
-    // }),
+    new htmlWebpackPlugin({
+        template: path.resolve(__dirname, "public", "index.html")
+    }),
     new CleanWebpackPlugin(),
   ],
   resolve: {
