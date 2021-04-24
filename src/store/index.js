@@ -99,9 +99,6 @@ export default new Vuex.Store({
         state.drawState = 'running';
       }
     },
-    REMOVE_ENTRY(state, id) {
-      state.history = state.history.filter((item) => item.id === id);
-    },
     CLEAR_HISTORY(state) {
       state.history = [];
     },
@@ -112,8 +109,8 @@ export default new Vuex.Store({
   actions: {
     async register({ dispatch, commit }, form) {
       try {
-        // eslint-disable-next-line max-len
-        const { user } = await firebase.auth.createUserWithEmailAndPassword(form.email, form.password);
+        const { user } = await firebase.auth
+          .createUserWithEmailAndPassword(form.email, form.password);
         await firebase.usersCollection.doc(user.uid).set({
           email: form.email,
         });
@@ -220,7 +217,7 @@ export default new Vuex.Store({
     removeEntry({ commit }, id) {
       try {
         firebase.historyCollection.doc(id).delete();
-        commit('REMOVE_ENTRY', id);
+        commit('CLEAR_HISTORY');
       } catch (error) {
         commit('SET_ERROR', error);
       }
