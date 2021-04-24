@@ -98,7 +98,3 @@ export default {
   },
 };
 </script>
-
-<style lang='scss'>
-  @import './HistoryTable.scss';
-</style>

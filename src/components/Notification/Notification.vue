@@ -22,7 +22,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-  @import './Notification.scss';
-</style>

@@ -30,7 +30,3 @@ export default {
 };
 
 </script>
-
-<style>
-@import './Register.scss';
-</style>
