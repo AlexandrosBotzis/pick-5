@@ -18,7 +18,6 @@ export default {
     ...mapState(['balance']),
   },
   methods: {
-
   },
 };
 </script>
