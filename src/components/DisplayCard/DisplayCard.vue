@@ -36,12 +36,12 @@ export default {
       default: false,
     },
     height: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
     width: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
   },
 };
