@@ -1,12 +1,12 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import NumberGrid from '@/components/NumberGrid/NumberGrid.vue';
+import NumberBoard from '@/components/NumberBoard/NumberBoard.vue';
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
 
-describe('NumberGrid.vue', () => {
+describe('NumberBoard.vue', () => {
   let store;
 
   const state = {
@@ -19,7 +19,7 @@ describe('NumberGrid.vue', () => {
     });
   });
 
-  const makeComponent = () => shallowMount(NumberGrid, {
+  const makeComponent = () => shallowMount(NumberBoard, {
     localVue,
     store,
   });

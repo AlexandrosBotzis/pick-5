@@ -1,18 +1,18 @@
 <template>
   <div class="home">
-    <number-grid />
+    <number-board />
     <selected-numbers title="Please place your bet" />
   </div>
 </template>
 
 <script>
-import NumberGrid from '@/components/NumberGrid/NumberGrid.vue';
+import NumberBoard from '@/components/NumberBoard/NumberBoard.vue';
 import SelectedNumbers from '@/components/SelectedNumbers/SelectedNumbers.vue';
 
 export default {
   name: 'Home',
   components: {
-    NumberGrid,
+    NumberBoard,
     SelectedNumbers,
   },
 };

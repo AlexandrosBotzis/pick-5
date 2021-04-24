@@ -1,5 +1,5 @@
 <template>
-  <div class="number-grid">
+  <div class="number-board">
     <display-card
       title="Select 5 numbers"
       height="700"
@@ -24,7 +24,7 @@ import BallNumber from '@/components/BallNumber/BallNumber.vue';
 import DisplayCard from '@/components/DisplayCard/DisplayCard.vue';
 
 export default {
-  name: 'NumberGrid',
+  name: 'NumberBoard',
   components: {
     BallNumber,
     DisplayCard,
@@ -54,5 +54,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './NumberGrid.scss';
+  @import './NumberBoard.scss';
 </style>
