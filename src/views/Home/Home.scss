@@ -1,13 +1,8 @@
 .home {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 
-    .number-grid {
-        // padding-top: 2rem;
-        // background-image: linear-gradient(#1A237E, #546E7A);
-    }
-
-    .col-sm-1.col-6 {
-        min-width: 6rem;
-    }
+  .col-sm-1.col-6 {
+    min-width: 6rem;
+  }
 }
