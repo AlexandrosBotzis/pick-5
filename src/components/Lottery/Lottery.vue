@@ -66,11 +66,11 @@ export default {
             ? this.addNumberToArray(randomNumber - 1)
             : this.addNumberToArray(randomNumber);
           this.Timer();
+          this.updateBalance();
         }, 4000);
       } else {
         this.$emit('drawCompleted');
         this.toggleDrawState();
-        this.updateBalance();
       }
     },
     foo() {

@@ -1,13 +1,11 @@
 <template>
   <div class="draw d-flex flex-column align-end justify-space-between">
     <div class="d-flex flex-row">
-        <!-- <transition-group name="fade"> -->
-          <lottery @drawCompleted="boo()"/>
-          <selected-numbers :isDisabled="true" title="Current BET"/>
-          <modal :modalOpened="drawFinished" />
-        <!-- </transition-group> -->
+        <lottery @drawCompleted="onCompleteDraw()"/>
+        <selected-numbers :isDisabled="true" title="Current BET"/>
+        <modal :modalOpened="drawFinished" />
     </div>
-    <amount class="draw__balance" />
+    <amount class="draw__amount" />
   </div>
 </template>
 
@@ -16,7 +14,6 @@ import Lottery from '@/components/Lottery/Lottery.vue';
 import SelectedNumbers from '@/components/SelectedNumbers/SelectedNumbers.vue';
 import Amount from '@/components/Amount/Amount.vue';
 import Modal from '@/components/Modal/Modal.vue';
-// import { mapActions } from 'vuex';
 
 export default {
   name: 'Home',
@@ -26,17 +23,13 @@ export default {
     SelectedNumbers,
     Modal,
   },
-  // mounted() {
-  //   this.toggleDrawState();
-  // },
   data() {
     return {
       drawFinished: false,
     };
   },
   methods: {
-    // ...mapActions(['toggleDrawState']),
-    boo() {
+    onCompleteDraw() {
       this.drawFinished = true;
     },
   },

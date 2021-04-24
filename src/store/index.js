@@ -68,25 +68,25 @@ export default new Vuex.Store({
       }
     },
     SET_DRAW_RESULT(state) {
-      if (state.winIndexes >= 3) {
+      state.drawResult = 'lost';
+
+      if (state.winIndexes.length >= 3) {
         state.drawResult = 'won';
-      } else {
-        state.drawResult = 'lost';
       }
     },
     UPDATE_BALANCE(state) {
-      switch (state.winIndexes) {
+      switch (state.winIndexes.length) {
         case 3:
-          state.balance += 5;
+          state.balance = 5;
           break;
         case 4:
-          state.balance += 10;
+          state.balance = 10;
           break;
         case 5:
-          state.balance += 20;
+          state.balance = 20;
           break;
         default:
-          state.balance += 0;
+          state.balance = 0;
       }
     },
     SET_HISTORICAL_DATA(state, payload) {
