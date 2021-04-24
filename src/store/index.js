@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import * as firebase from '@/firebase';
-// import router from '@/router';
+import router from '@/router';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -20,6 +20,7 @@ export default new Vuex.Store({
     winIndexes: [],
     balance: 0,
     history: [],
+    error: '',
   },
   getters: {
     user(state) {
@@ -101,31 +102,48 @@ export default new Vuex.Store({
       state.history = [];
       state.history = state.history.filter((item) => item.id !== id);
     },
+    SET_ERROR(state, error) {
+      state.error = error;
+    },
   },
   actions: {
-    async register({ dispatch }, form) {
-      // eslint-disable-next-line max-len
-      const { user } = await firebase.auth.createUserWithEmailAndPassword(form.email, form.password);
-      await firebase.usersCollection.doc(user.uid).set({
-        email: form.email,
-      });
-      dispatch('fetchUser', user);
+    async register({ dispatch, commit }, form) {
+      try {
+        // eslint-disable-next-line max-len
+        const { user } = await firebase.auth.createUserWithEmailAndPassword(form.email, form.password);
+        await firebase.usersCollection.doc(user.uid).set({
+          email: form.email,
+        });
+        dispatch('fetchUser', user);
+        router.push('/login');
+      } catch (error) {
+        commit('SET_ERROR', error);
+      }
     },
-    async login({ dispatch }, form) {
-      const { user } = await firebase.auth.signInWithEmailAndPassword(form.email, form.password);
-      dispatch('fetchUser', user);
+    async login({ dispatch, commit }, form) {
+      try {
+        const { user } = await firebase.auth.signInWithEmailAndPassword(form.email, form.password);
+        dispatch('fetchUser', user);
+      } catch (error) {
+        commit('SET_ERROR', error);
+      }
     },
-    async logout() {
-      await firebase.auth.signOut();
-      // router.push('/login');
+    async logout({ commit }) {
+      try {
+        await firebase.auth.signOut();
+        router.push('/login');
+      } catch (error) {
+        commit('SET_ERROR', error);
+      }
     },
     async fetchUser({ commit }, user) {
-      const userProfile = await firebase.usersCollection.doc(user.uid).get();
-      commit('SET_USER', { userId: user.uid, userData: userProfile.data() });
-      // if (router.currentRoute.path === '/login'
-      //   || router.currentRoute.path === '/draw') {
-      //   router.push('/');
-      // }
+      try {
+        const userProfile = await firebase.usersCollection.doc(user.uid).get();
+        commit('SET_USER', { userId: user.uid, userData: userProfile.data() });
+      } catch (error) {
+        // TODO: Check if continues to pages when fetching a user is not valid
+        commit('SET_ERROR', error);
+      }
     },
     async saveHistoricalData({ state, commit }) {
       try {
@@ -138,8 +156,7 @@ export default new Vuex.Store({
           amount: state.balance,
         });
       } catch (error) {
-        // TODO: Add Error State
-        console.log('error', error);
+        commit('SET_ERROR', error);
       } finally {
         commit('CLEAR_BET');
         commit('CLEAR_DRAW');
@@ -160,8 +177,7 @@ export default new Vuex.Store({
           });
         });
       } catch (error) {
-        // TODO: Add Error State
-        console.log('error', error);
+        commit('SET_ERROR', error);
       }
     },
     setSelectedNumber({ commit }, number) {
@@ -193,9 +209,14 @@ export default new Vuex.Store({
     toggleDrawState({ commit }) {
       commit('TOGGLE_DRAW_STATE');
     },
-    removeEntry({ commit }, id) {
-      firebase.historyCollection.doc(id).delete();
-      commit('REMOVE_ENTRY', id);
+    async removeEntry({ commit }, id) {
+      console.log('id', id);
+      try {
+        await firebase.historyCollection1.doc(id).delete();
+        commit('REMOVE_ENTRY', id);
+      } catch (error) {
+        commit('SET_ERROR', error);
+      }
     },
   },
 });

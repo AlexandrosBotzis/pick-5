@@ -102,7 +102,6 @@ export default {
         email: this.email,
         password: this.password,
       });
-      this.$router.push({ path: '/login' });
     },
     loginUser() {
       this.login({
