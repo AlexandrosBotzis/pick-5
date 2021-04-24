@@ -13,9 +13,14 @@ describe('NumberBoard.vue', () => {
     bet: [],
   };
 
+  const actions = {
+    clearHistory: jest.fn(),
+  };
+
   beforeEach(() => {
     store = new Vuex.Store({
       state,
+      actions,
     });
   });
 
