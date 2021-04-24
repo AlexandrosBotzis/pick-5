@@ -9,9 +9,14 @@ localVue.use(Vuex);
 describe('HistoryTable.vue', () => {
   let store;
 
+  const actions = {
+    fetchHistoricalData: jest.fn(),
+  };
+
   beforeEach(() => {
     store = new Vuex.Store({
       history: [],
+      actions,
     });
   });
 
