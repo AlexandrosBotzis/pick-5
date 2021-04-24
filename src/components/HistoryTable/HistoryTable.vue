@@ -2,7 +2,7 @@
   <v-container class="history-table">
     <v-data-table
       :headers="headers"
-      :items="his"
+      :items="historyData"
       color="#66BB6A"
     >
     <template v-slot:item.draw="{ item }">
@@ -23,9 +23,6 @@
         {{ i }}
       </v-chip>
     </template>
-    <!-- <template v-slot:[`item.actions`]="{ item }">
-      <v-icon @click="deleteEntry(item.id)">mdi-delete</v-icon>
-    </template> -->
     <template v-slot:[`item.actions`]="{ item }">
       <v-icon @click="toggleDialog()">mdi-delete</v-icon>
       <v-dialog
@@ -74,6 +71,7 @@ export default {
         { text: 'Status', value: 'result' },
         { text: 'Amount', value: 'amount' },
         { text: 'Date', value: 'createdOn' },
+        { text: 'Time', value: 'createdAt' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       dialog: false,
@@ -91,7 +89,7 @@ export default {
   },
   computed: {
     ...mapState(['history']),
-    his() {
+    historyData() {
       return this.history;
     },
   },

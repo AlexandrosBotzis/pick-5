@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import * as firebase from '@/firebase';
 import router from '@/router';
+import moment from 'moment';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -100,7 +101,7 @@ export default new Vuex.Store({
     },
     REMOVE_ENTRY(state, id) {
       state.history = [];
-      state.history = state.history.filter((item) => item.id !== id);
+      state.history = state.history.filter((item) => item.id === id);
     },
     SET_ERROR(state, error) {
       state.error = error;
@@ -169,9 +170,11 @@ export default new Vuex.Store({
             const data = doc.data();
             data.id = doc.id;
             if (data.userId === firebase.auth.currentUser.uid) {
+              const dateInstance = new Date(data.createdOn.seconds * 1000);
               commit('SET_HISTORICAL_DATA', {
                 ...data,
-                createdOn: new Date(data.createdOn.seconds * 1000),
+                createdOn: moment(dateInstance).format('DD.MM.YYYY'),
+                createdAt: moment(dateInstance).format('HH:mm'),
               });
             }
           });
@@ -209,10 +212,9 @@ export default new Vuex.Store({
     toggleDrawState({ commit }) {
       commit('TOGGLE_DRAW_STATE');
     },
-    async removeEntry({ commit }, id) {
-      console.log('id', id);
+    removeEntry({ commit }, id) {
       try {
-        await firebase.historyCollection1.doc(id).delete();
+        firebase.historyCollection.doc(id).delete();
         commit('REMOVE_ENTRY', id);
       } catch (error) {
         commit('SET_ERROR', error);
