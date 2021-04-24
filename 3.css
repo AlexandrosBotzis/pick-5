@@ -1,0 +1,12 @@
+.ball-number__label{color:white;font-size:3rem;font-weight:700}
+
+.display-card{transition:opacity .3s ease-in-out;background-image:linear-gradient(#1A237E, #546E7A)}.display-card__toolbar{background-image:linear-gradient(#FBC02D, #546E7A)}
+
+
+
+
+.amount{transition:opacity .3s ease-in-out;background-image:linear-gradient(#4CAF50, #546E7A)}
+
+
+.draw{height:45rem}
+
