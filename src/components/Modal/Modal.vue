@@ -61,17 +61,16 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['saveHistoricalData', 'clearBet', 'clearDraw']),
+    ...mapActions(['saveHistoricalData', 'clearBet', 'clearDraw', 'clearHistory']),
     redirectToMainPage() {
       this.$router.push({ path: '/' });
       this.clearBet();
       this.clearDraw();
+      this.clearHistory();
     },
     saveToHistory() {
       this.saveHistoricalData();
       this.redirectToMainPage();
-      this.clearBet();
-      this.clearDraw();
     },
   },
 };

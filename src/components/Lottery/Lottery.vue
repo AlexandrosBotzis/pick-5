@@ -46,7 +46,12 @@ export default {
     this.Timer();
   },
   methods: {
-    ...mapActions(['addToDraw', 'checkWins', 'toggleDrawState', 'updateBalance']),
+    ...mapActions([
+      'addToDraw',
+      'checkWins',
+      'toggleDrawState',
+      'updateBalance',
+    ]),
     addNumberToArray(number) {
       this.randomNumbers.push(number);
       this.addToDraw(number);

@@ -66,14 +66,6 @@ export default {
       default: false,
     },
   },
-  // data() {
-  //   return {
-  //     myBet: [1, 2],
-  //   };
-  // },
-  // mounted() {
-  //   this.clearBet();
-  // },
   computed: {
     ...mapState(['bet', 'maxBetReached', 'winIndexes']),
   },

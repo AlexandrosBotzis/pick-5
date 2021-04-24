@@ -34,6 +34,9 @@ export default {
       selectedNumber: undefined,
     };
   },
+  mounted() {
+    this.clearHistory();
+  },
   computed: {
     ...mapState(['bet']),
     locked() {
@@ -41,7 +44,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['addToBet', 'setSelectedNumber']),
+    ...mapActions(['addToBet', 'clearHistory', 'setSelectedNumber']),
     select(number) {
       this.setSelectedNumber(number);
       this.addToBet(number);

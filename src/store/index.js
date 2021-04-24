@@ -103,6 +103,9 @@ export default new Vuex.Store({
       state.history = [];
       state.history = state.history.filter((item) => item.id === id);
     },
+    CLEAR_HISTORY(state) {
+      state.history = [];
+    },
     SET_ERROR(state, error) {
       state.error = error;
     },
@@ -198,6 +201,9 @@ export default new Vuex.Store({
     },
     clearDraw({ commit }) {
       commit('CLEAR_DRAW');
+    },
+    clearHistory({ commit }) {
+      commit('CLEAR_HISTORY');
     },
     addToDraw({ commit }, number) {
       commit('ADD_TO_DRAW', number);
