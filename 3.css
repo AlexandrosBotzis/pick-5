@@ -1,13 +1,10 @@
 .ball-number__label{color:white;font-size:3rem;font-weight:700}
 
-.display-card{transition:opacity .3s ease-in-out;background-image:linear-gradient(#1A237E, #546E7A)}.display-card__toolbar{background-image:linear-gradient(#FBC02D, #546E7A)}
+.display-card{transition:opacity 0.3s ease-in-out;background-image:linear-gradient(#1a237e, #546e7a)}.display-card__toolbar{background-image:linear-gradient(#fbc02d, #546e7a)}
 
+.amount{transition:opacity 0.3s ease-in-out;background-image:linear-gradient(#4caf50, #546e7a)}
 
-
-
-.amount{transition:opacity .3s ease-in-out;background-image:linear-gradient(#4CAF50, #546E7A)}
-
-.modal__toolbar{background-image:linear-gradient(#FBC02D, #546E7A)}
+.modal__toolbar{background-image:linear-gradient(#fbc02d, #546e7a)}
 
 .draw{height:45rem}
 
