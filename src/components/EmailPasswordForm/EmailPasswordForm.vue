@@ -43,7 +43,7 @@
             >
               {{title}}
             </v-btn>
-            <span class="email-password-form__divider"> or </span>
+            <h3 class="mt-5 email-password-form__divider"> or </h3>
             <h3 class="email-password-form__subtitle">{{ subtitle }}</h3>
             <v-btn
               width="260"
