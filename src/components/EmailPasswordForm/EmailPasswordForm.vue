@@ -98,12 +98,14 @@ export default {
       this.$emit('submit');
     },
     registerUser() {
+      this.$v.$touch();
       this.register({
         email: this.email,
         password: this.password,
       });
     },
     loginUser() {
+      this.$v.$touch();
       this.login({
         email: this.email,
         password: this.password,
