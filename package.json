@@ -10,8 +10,6 @@
     "lint:vue:fix": "stylelint 'src/**/*.vue' --fix",
     "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
     "lint:scss:fix": "stylelint 'src/**/*.scss' --syntax scss --fix",
-    "lint:js": "eslint . --ext .js,.jsx",
-    "lint:js:fix": "npm run lint:js -- --fix",
     "deploy": "npm run build && gh-pages -d dist",
     "prepare": "husky install"
   },
