@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main transition="slide-x-transition">
+    <v-main>
       <my-header v-if="showHeader" />
       <router-view></router-view>
       <notification/>

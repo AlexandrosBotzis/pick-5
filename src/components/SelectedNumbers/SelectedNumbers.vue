@@ -9,9 +9,10 @@
         >
           <ball-number
             :label="n"
-            @select="remove(n)"
+            @remove="onRemove(n)"
             :isMatching="winingIndexes(index)"
             :isDisabled="isDisabled"
+            :allowRemoval="true"
           />
         </v-col>
       </template>
@@ -78,7 +79,7 @@ export default {
     clearSelection() {
       this.clearBet();
     },
-    remove(number) {
+    onRemove(number) {
       if (this.$route.path === '/draw') {
         return;
       }

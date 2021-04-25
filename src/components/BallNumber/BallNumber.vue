@@ -15,6 +15,16 @@
         justify="center"
         v-text="label"
       />
+      <v-btn
+        v-if="hover && allowRemoval"
+        @click="remove"
+        color="error"
+        absolute
+        fab
+        small
+      >
+        <v-icon>mdi-delete</v-icon>
+      </v-btn>
     </v-card>
   </v-hover>
 </template>
@@ -37,6 +47,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    allowRemoval: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     ...mapState(['bet', 'selectedNumber']),
@@ -44,6 +58,9 @@ export default {
   methods: {
     select() {
       this.$emit('select');
+    },
+    remove() {
+      this.$emit('remove');
     },
   },
 };
