@@ -97,7 +97,7 @@ export default {
     },
     handleClick(value) {
       this.$router.push({
-        path: '/history/details/',
+        path: '/history/details',
         query: { id: value.internalId },
       });
     },

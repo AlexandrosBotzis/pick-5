@@ -41,7 +41,7 @@ const routes = [
     },
   },
   {
-    path: '/history/details/',
+    path: '/history/details',
     name: 'HistoryDetails',
     component: () => import('@/views/HistoryDetails/HistoryDetails.vue'),
     meta: {

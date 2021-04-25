@@ -25,14 +25,6 @@ export default new Vuex.Store({
     selectedRow: {},
     error: '',
   },
-  getters: {
-    user(state) {
-      return state.user;
-    },
-    drawState(state) {
-      return state.drawState;
-    },
-  },
   mutations: {
     SET_LOGGED_IN(state, value) {
       state.user.loggedIn = value;
