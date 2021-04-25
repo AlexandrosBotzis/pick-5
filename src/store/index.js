@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import * as firebase from '@/firebase';
 import router from '@/router';
 import moment from 'moment';
+import { uuid } from 'uuidv4';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     winIndexes: [],
     balance: 0,
     history: [],
+    selectedRow: {},
     error: '',
   },
   getters: {
@@ -68,10 +70,10 @@ export default new Vuex.Store({
       }
     },
     SET_DRAW_RESULT(state) {
-      state.drawResult = 'lost';
+      state.drawResult = 'Lost';
 
       if (state.winIndexes.length >= 3) {
-        state.drawResult = 'won';
+        state.drawResult = 'Won';
       }
     },
     UPDATE_BALANCE(state) {
@@ -91,6 +93,11 @@ export default new Vuex.Store({
     },
     SET_HISTORICAL_DATA(state, payload) {
       state.history.push(payload);
+      console.log('histoyr', state.history);
+    },
+    SET_SELECTED_ROW_ENTRY(state, id) {
+      const selectedItem = state.history.find((item) => item.internalId === id);
+      state.selectedRow = selectedItem;
     },
     TOGGLE_DRAW_STATE(state) {
       if (state.drawState === 'running') {
@@ -174,6 +181,7 @@ export default new Vuex.Store({
                 ...data,
                 createdOn: moment(dateInstance).format('DD.MM.YYYY'),
                 createdAt: moment(dateInstance).format('HH:mm'),
+                internalId: uuid(),
               });
             }
           });
@@ -182,8 +190,19 @@ export default new Vuex.Store({
         commit('SET_ERROR', error);
       }
     },
+    removeEntry({ commit }, id) {
+      try {
+        firebase.historyCollection.doc(id).delete();
+        commit('CLEAR_HISTORY');
+      } catch (error) {
+        commit('SET_ERROR', error);
+      }
+    },
     setSelectedNumber({ commit }, number) {
       commit('SET_SELECTED_NUMBER', number);
+    },
+    setSelectedRowEntry({ commit }, id) {
+      commit('SET_SELECTED_ROW_ENTRY', id);
     },
     addToBet({ commit }, number) {
       commit('ADD_TO_BET', number);
@@ -213,14 +232,6 @@ export default new Vuex.Store({
     },
     toggleDrawState({ commit }) {
       commit('TOGGLE_DRAW_STATE');
-    },
-    removeEntry({ commit }, id) {
-      try {
-        firebase.historyCollection.doc(id).delete();
-        commit('CLEAR_HISTORY');
-      } catch (error) {
-        commit('SET_ERROR', error);
-      }
     },
   },
 });

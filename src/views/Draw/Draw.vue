@@ -1,8 +1,8 @@
 <template>
   <div class="draw d-flex flex-column align-end justify-space-between">
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row justify-center">
         <lottery @drawCompleted="onCompleteDraw()"/>
-        <selected-numbers :isDisabled="true" title="Current BET"/>
+        <selected-numbers :numbers="betNumbers" :isDisabled="true" title="Current BET"/>
         <modal :modalOpened="drawFinished" />
     </div>
     <amount class="draw__amount" />
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Lottery from '@/components/Lottery/Lottery.vue';
 import SelectedNumbers from '@/components/SelectedNumbers/SelectedNumbers.vue';
 import Amount from '@/components/Amount/Amount.vue';
@@ -27,6 +28,12 @@ export default {
     return {
       drawFinished: false,
     };
+  },
+  computed: {
+    ...mapState(['bet']),
+    betNumbers() {
+      return this.bet;
+    },
   },
   methods: {
     onCompleteDraw() {

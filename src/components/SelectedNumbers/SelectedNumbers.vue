@@ -3,7 +3,7 @@
     <display-card :title="title" height="280" width="680">
       <template>
         <v-col
-          v-for="(n, index) in bet"
+          v-for="(n, index) in numbers"
           :key="n"
           cols="auto"
         >
@@ -17,7 +17,7 @@
       </template>
       <template #footer>
         <v-footer
-          v-if="$route.path !== '/draw'"
+          v-if="$route.path === '/'"
           class="d-flex justify-space-between pb-6"
           color="transparent"
         >
@@ -30,10 +30,10 @@
           <v-icon>mdi-refresh</v-icon>
           </v-btn>
           <v-btn
-              :disabled="!maxBetReached"
-              width="150"
-              color="success"
-              @click="redirectTo"
+            :disabled="!maxBetReached"
+            width="150"
+            color="success"
+            @click="redirectTo"
           >
           <span>Submit</span>
 
@@ -65,9 +65,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    numbers: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
-    ...mapState(['bet', 'maxBetReached', 'winIndexes']),
+    ...mapState(['maxBetReached', 'winIndexes']),
   },
   methods: {
     ...mapActions(['clearBet', 'removeFromBet']),

@@ -30,7 +30,6 @@ const routes = [
     component: () => import('@/views/Draw/Draw.vue'),
     meta: {
       requiresAuth: true,
-      conditionalRoute: true,
     },
   },
   {
@@ -39,7 +38,14 @@ const routes = [
     component: () => import('@/views/History/History.vue'),
     meta: {
       requiresAuth: true,
-      conditionalRoute: true,
+    },
+  },
+  {
+    path: '/history/details/',
+    name: 'HistoryDetails',
+    component: () => import('@/views/HistoryDetails/HistoryDetails.vue'),
+    meta: {
+      requiresAuth: true,
     },
   },
 ];

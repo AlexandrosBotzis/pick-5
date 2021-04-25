@@ -1,6 +1,11 @@
 <template>
-  <v-card dark class="amount" width="400">
-    <v-card-title>Total Amount: {{ balance }}</v-card-title>
+  <v-card
+    class="amount mr-3"
+    id="balanceAmount"
+    elevation="12"
+    dark width="400"
+  >
+    <v-card-title>{{ label }}</v-card-title>
   </v-card>
 </template>
 
@@ -9,14 +14,11 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Amount',
-  data() {
-    return {
-    };
-  },
   computed: {
     ...mapState(['balance']),
-  },
-  methods: {
+    label() {
+      return `Total Amount: ${this.balance}`;
+    },
   },
 };
 </script>

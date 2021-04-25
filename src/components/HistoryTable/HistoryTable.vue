@@ -3,7 +3,7 @@
     <v-data-table
       :headers="headers"
       :items="historyData"
-      color="#66BB6A"
+      @click:row="handleClick"
     >
     <template v-slot:item.draw="{ item }">
       <v-chip
@@ -94,6 +94,12 @@ export default {
     deleteEntry(item) {
       this.removeEntry(item);
       this.toggleDialog();
+    },
+    handleClick(value) {
+      this.$router.push({
+        path: '/history/details/',
+        query: { id: value.internalId },
+      });
     },
   },
 };
