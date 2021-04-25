@@ -11,7 +11,7 @@
         v-for="(item, index) in items"
         :key="index"
         :to="item.path"
-        :disabled="item.disabled"
+        :disabled="item.disabled || isMenuItemDisabled"
       >
         {{ item.title }}
       </v-tab>
@@ -55,7 +55,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(['user']),
+    ...mapState(['user', 'drawState']),
+    isMenuItemDisabled() {
+      return this.drawState === 'running';
+    },
   },
   methods: {
     ...mapActions(['logout']),
