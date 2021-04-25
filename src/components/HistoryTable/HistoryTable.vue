@@ -1,6 +1,7 @@
 <template>
   <v-container class="history-table">
     <v-data-table
+      class="elevation-12 row-pointer"
       :headers="headers"
       :items="historyData"
       @click:row="onSelectRow"
@@ -106,3 +107,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  @import './HistoryTable.scss';
+</style>
