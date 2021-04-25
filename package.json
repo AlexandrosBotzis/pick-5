@@ -6,9 +6,14 @@
     "serve": "vue-cli-service serve",
     "build": "webpack --mode production",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint",
-    "lint:style": "stylelint './src/**/*.vue' './src/**/*.scss'",
-    "deploy": "npm run build && gh-pages -d dist"
+    "lint:vue": "stylelint 'src/**/*.vue'",
+    "lint:vue:fix": "stylelint 'src/**/*.vue' --fix",
+    "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
+    "lint:scss:fix": "stylelint 'src/**/*.scss' --syntax scss --fix",
+    "lint:js": "eslint . --ext .js,.jsx",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "deploy": "npm run build && gh-pages -d dist",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
@@ -17,7 +22,6 @@
     "firebase": "^8.4.1",
     "moment": "^2.29.1",
     "style-loader": "^2.0.0",
-    "stylelint": "^13.12.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuefire": "^2.2.5",
@@ -46,8 +50,11 @@
     "eslint-plugin-vue": "^6.2.2",
     "gh-pages": "^3.1.0",
     "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
+    "stylelint": "^13.13.0",
+    "stylelint-config-standard": "^22.0.0",
     "vue-cli-plugin-vuetify": "~2.3.1",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",
@@ -55,9 +62,17 @@
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
   },
+  "lint-staged": {
+    "src/**/*.vue": [
+      "npm run lint:vue"
+    ],
+    "src/**/*.scss": [
+      "npm run lint:scss"
+    ]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test:unit"
+      "pre-commit": "lint-staged"
     }
   }
 }
