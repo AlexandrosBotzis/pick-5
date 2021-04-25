@@ -3,8 +3,6 @@
     title="Register"
     subtitle="Have you already an account?"
     redirectLabel="Login"
-    @submit="createAccount()"
-    v-model="internalValue"
   />
 </template>
 
@@ -15,17 +13,6 @@ export default {
   name: 'Register',
   components: {
     EmailPasswordForm,
-  },
-  data() {
-    return {
-      internalValue: this.value,
-    };
-  },
-  methods: {
-    createAccount() {
-      // TODO: Display success notification
-      console.log('new Account!', this.internalValue);
-    },
   },
 };
 

@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import * as firebase from '@/firebase';
 import router from '@/router';
 import moment from 'moment';
-import { uuid } from 'uuidv4';
+import { v4 } from 'uuid';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -26,9 +26,6 @@ export default new Vuex.Store({
     error: '',
   },
   mutations: {
-    SET_LOGGED_IN(state, value) {
-      state.user.loggedIn = value;
-    },
     SET_USER(state, { userId, userData }) {
       state.user.email = userData.email;
       state.user.id = userId;
@@ -173,7 +170,7 @@ export default new Vuex.Store({
                 ...data,
                 createdOn: moment(dateInstance).format('DD.MM.YYYY'),
                 createdAt: moment(dateInstance).format('HH:mm'),
-                internalId: uuid(),
+                internalId: v4(),
               });
             }
           });

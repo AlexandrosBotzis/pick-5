@@ -5,7 +5,6 @@
     redirectLabel="Register"
   />
 </template>
-
 <script>
 
 import EmailPasswordForm from '@/components/EmailPasswordForm/EmailPasswordForm.vue';
