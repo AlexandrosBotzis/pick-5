@@ -2,13 +2,13 @@
 
 ## Description
 
-Pick-5 is one Vue.js implementation of the popular lottery game in which player has to place the bet of 5 numbers out of 30.
+Pick-5 is a Vue.js implementation of the popular lottery game in which player has to place the bet of 5 numbers out of 30.
 After the selection process the draw process starts with game goal to reach more than 3 matches in order to have earnings.
 
 In History Menu item user can be informed about the past attempts and delete selected entries.
 By selecting an entry user can see more details about the attempt.
 
-You can play the game in [Pick-5](alexandros.botzis.github.io/pick-5/) after successful login/registration using Firebase Authentication.
+You can play the [Pick-5](alexandros.botzis.github.io/pick-5/) game after successful login/registration using Firebase Authentication.
 
 ## Development Setup
 
