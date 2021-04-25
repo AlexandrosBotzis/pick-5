@@ -21,10 +21,7 @@ describe('SelectedNumbers.vue', () => {
     path: '/some/random/path',
   };
 
-  //   const router = VueRouter({ routes })
-
   beforeEach(() => {
-    // router = new VueRouter({ routes });
     store = new Vuex.Store({
       state,
     });

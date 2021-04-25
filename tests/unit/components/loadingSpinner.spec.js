@@ -11,6 +11,7 @@ describe('HistoryTable.vue', () => {
 
   const actions = {
     toggleDrawState: jest.fn(),
+    fetchHistoricalData: jest.fn(),
   };
 
   beforeEach(() => {
