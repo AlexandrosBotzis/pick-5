@@ -2,12 +2,12 @@
   <div class="lottery">
     <display-card title="Current DRAW" width="843" height="280">
       <template>
-        <v-col class="d-flex flex-row" cols="auto">
-          <ball-number
-            v-for="(item, index) in randomNumbers"
-            :key="index"
-            :label="item"
-          />
+        <v-col
+          v-for="(item, index) in randomNumbers"
+          :key="index"
+          cols="auto"
+        >
+          <ball-number :label="item"/>
         </v-col>
         <v-fade-transition>
           <v-overlay v-if="!counterFinished" absolute>
