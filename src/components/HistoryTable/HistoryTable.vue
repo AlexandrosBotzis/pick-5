@@ -3,7 +3,7 @@
     <v-data-table
       :headers="headers"
       :items="historyData"
-      @click:row="handleClick"
+      @click:row="onSelectRow"
     >
     <template v-slot:item.draw="{ item }">
       <v-chip
@@ -24,7 +24,9 @@
       </v-chip>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
-      <v-icon @click="toggleDialog()">mdi-delete</v-icon>
+      <v-icon @click.stop="toggleDialog()">
+        mdi-delete
+      </v-icon>
       <v-dialog
         v-model="dialog"
         persistent
@@ -46,7 +48,7 @@
             <v-btn
               color="red darken-1"
               text
-              @click="deleteEntry(item.id)"
+              @click="onDeleteEntry(item.id)"
             >
               Yes, Delete
             </v-btn>
@@ -91,11 +93,11 @@ export default {
     toggleDialog() {
       this.dialog = !this.dialog;
     },
-    deleteEntry(item) {
+    onDeleteEntry(item) {
       this.removeEntry(item);
       this.toggleDialog();
     },
-    handleClick(value) {
+    onSelectRow(value) {
       this.$router.push({
         path: '/history/details',
         query: { id: value.internalId },
