@@ -85,7 +85,6 @@ export default new Vuex.Store({
     },
     SET_HISTORICAL_DATA(state, payload) {
       state.history.push(payload);
-      console.log('histoyr', state.history);
     },
     SET_SELECTED_ROW_ENTRY(state, id) {
       const selectedItem = state.history.find((item) => item.internalId === id);
@@ -161,7 +160,8 @@ export default new Vuex.Store({
         commit('CLEAR_DRAW');
       }
     },
-    async fetchHistoricalData({ commit }) {
+    fetchHistoricalData({ commit }) {
+      commit('CLEAR_HISTORY');
       try {
         firebase.historyCollection.orderBy('createdOn', 'desc').onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
